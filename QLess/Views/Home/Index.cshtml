@@ -1,0 +1,295 @@
+﻿@{
+    ViewData["Title"] = "Home Page";
+}
+
+@model Qless.Entities.Models.CardTransaction
+
+<div class="container p-3 my-3 border text-center">
+    <h1>Q-LESS Transport Machine</h1>
+    <p>
+        The new computer system is named Q-LESS Transport (Quick Line and Efficient Service System)
+        which aims to lessen the time and cost that a commuter will spend in using the public MRT transport
+        system.
+    </p>
+</div>
+
+<button class="container p-3 my-3 bg-dark text-white text-center" id="portalDiscount" data-toggle="modal" data-target="#registerModal">
+    <h1>Card Discount Registration</h1>
+    <p>Discounted Card Types can have 20% discounts.</p>
+</button>
+
+<button class="container p-3 my-3 bg-primary text-white text-center" data-toggle="modal" data-target="#loadModal">
+    <h1>Load Card</h1>
+    <p>
+        Load your Q-LESS Transport Card with a starting value of P100 up to P10,000.
+    </p>
+</button>
+
+<!-- Register Modal -->
+<div class="modal fade" id="registerModal">
+    <div class="modal-dialog modal-xl">
+        <div class="modal-content">
+
+            <!-- Modal Header -->
+            <div class="modal-header">
+                <h4 class="modal-title">Apply Discount</h4>
+                <button type="button" class="close closeModal" data-dismiss="modal">&times;</button>
+            </div>
+
+            <!-- Modal body -->
+            <div class="modal-body">
+                <div class="container">
+                    <div class="container">
+                        <form name="discount">
+                            <div class="form-group">
+                                <label for="_CardId">Card ID:</label>
+                                <input type="text" class="form-control" id="_CardId" placeholder="Enter Card ID" name="_CardId" data-inputmask="'mask': '9999 9999 9999 9999'" />
+                                <div id="CardIdKey">
+                                    <input class="btn btn-light" type="button" value="1" onclick="discount._CardId.value+='1'" />
+                                    <input class="btn btn-light" type="button" value="2" onclick="discount._CardId.value+='2'" />
+                                    <input class="btn btn-light" type="button" value="3" onclick="discount._CardId.value+='3'" />
+                                    <input class="btn btn-light" type="button" value="4" onclick="discount._CardId.value+='4'" />
+                                    <input class="btn btn-light" type="button" value="5" onclick="discount._CardId.value+='5'" />
+                                    <input class="btn btn-light" type="button" value="6" onclick="discount._CardId.value+='6'" />
+                                    <input class="btn btn-light" type="button" value="7" onclick="discount._CardId.value+='7'" />
+                                    <input class="btn btn-light" type="button" value="8" onclick="discount._CardId.value+='8'" />
+                                    <input class="btn btn-light" type="button" value="9" onclick="discount._CardId.value+='9'" />
+                                    <input class="btn btn-light" type="button" value="0" onclick="discount._CardId.value+='0'" />
+                                    <br />
+                                    <input class="btn btn-light" type="button" value="Q" onclick="discount._CardId.value+='Q'" />
+                                    <input class="btn btn-light" type="button" value="W" onclick="discount._CardId.value+='W'" />
+                                    <input class="btn btn-light" type="button" value="E" onclick="discount._CardId.value+='E'" />
+                                    <input class="btn btn-light" type="button" value="R" onclick="discount._CardId.value+='R'" />
+                                    <input class="btn btn-light" type="button" value="T" onclick="discount._CardId.value+='T'" />
+                                    <input class="btn btn-light" type="button" value="Y" onclick="discount._CardId.value+='Y'" />
+                                    <input class="btn btn-light" type="button" value="U" onclick="discount._CardId.value+='U'" />
+                                    <input class="btn btn-light" type="button" value="I" onclick="discount._CardId.value+='I'" />
+                                    <input class="btn btn-light" type="button" value="O" onclick="discount._CardId.value+='O'" />
+                                    <input class="btn btn-light" type="button" value="P" onclick="discount._CardId.value+='P'" />
+                                    <br />
+                                    <input class="btn btn-light" type="button" value="A" onclick="discount._CardId.value+='A'" />
+                                    <input class="btn btn-light" type="button" value="S" onclick="discount._CardId.value+='S'" />
+                                    <input class="btn btn-light" type="button" value="D" onclick="discount._CardId.value+='D'" />
+                                    <input class="btn btn-light" type="button" value="F" onclick="discount._CardId.value+='F'" />
+                                    <input class="btn btn-light" type="button" value="G" onclick="discount._CardId.value+='G'" />
+                                    <input class="btn btn-light" type="button" value="H" onclick="discount._CardId.value+='H'" />
+                                    <input class="btn btn-light" type="button" value="J" onclick="discount._CardId.value+='J'" />
+                                    <input class="btn btn-light" type="button" value="K" onclick="discount._CardId.value+='K'" />
+                                    <input class="btn btn-light" type="button" value="L" onclick="discount._CardId.value+='L'" />
+                                    <input class="btn btn-light" type="button" value="-" onclick="discount._CardId.value+='-'" />
+                                    <br />
+                                    <input class="btn btn-light" type="button" value="Z" onclick="discount._CardId.value+='Z'" />
+                                    <input class="btn btn-light" type="button" value="X" onclick="discount._CardId.value+='X'" />
+                                    <input class="btn btn-light" type="button" value="C" onclick="discount._CardId.value+='C'" />
+                                    <input class="btn btn-light" type="button" value="V" onclick="discount._CardId.value+='V'" />
+                                    <input class="btn btn-light" type="button" value="B" onclick="discount._CardId.value+='B'" />
+                                    <input class="btn btn-light" type="button" value="N" onclick="discount._CardId.value+='N'" />
+                                    <input class="btn btn-light" type="button" value="M" onclick="discount._CardId.value+='M'" />
+                                    <input class="btn btn-light" type="button" value="Del" onclick="discount._CardId.value=''" />
+                                    <input class="btn btn-light" type="button" value="Enter" id="CardIdEnter" />
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <label for="controlNumber">Card Provided Control Number:</label>
+                                <input type="text" class="form-control" id="controlNumber" placeholder="Enter Control Number" name="controlNumber">
+                                <br />
+                                <div class="form-check">
+                                    <label class="form-check-label" for="PWD">
+                                        <input type="radio" class="form-check-input" id="PWD" name="optradio" value="PWD" checked>PWD ID
+                                    </label>
+                                </div>
+                                <div class="form-check">
+                                    <label class="form-check-label" for="SC">
+                                        <input type="radio" class="form-check-input" id="SC" name="optradio" value="SC">Senior Citizen ID
+                                    </label>
+                                </div>
+                                <div id="controlNumberKey">
+                                    <input class="btn btn-light" type="button" value="1" onclick="discount.controlNumber.value+='1'" />
+                                    <input class="btn btn-light" type="button" value="2" onclick="discount.controlNumber.value+='2'" />
+                                    <input class="btn btn-light" type="button" value="3" onclick="discount.controlNumber.value+='3'" />
+                                    <input class="btn btn-light" type="button" value="4" onclick="discount.controlNumber.value+='4'" />
+                                    <input class="btn btn-light" type="button" value="5" onclick="discount.controlNumber.value+='5'" />
+                                    <input class="btn btn-light" type="button" value="6" onclick="discount.controlNumber.value+='6'" />
+                                    <input class="btn btn-light" type="button" value="7" onclick="discount.controlNumber.value+='7'" />
+                                    <input class="btn btn-light" type="button" value="8" onclick="discount.controlNumber.value+='8'" />
+                                    <input class="btn btn-light" type="button" value="9" onclick="discount.controlNumber.value+='9'" />
+                                    <input class="btn btn-light" type="button" value="0" onclick="discount.controlNumber.value+='0'" />
+                                    <br />
+                                    <input class="btn btn-light" type="button" value="Q" onclick="discount.controlNumber.value+='Q'" />
+                                    <input class="btn btn-light" type="button" value="W" onclick="discount.controlNumber.value+='W'" />
+                                    <input class="btn btn-light" type="button" value="E" onclick="discount.controlNumber.value+='E'" />
+                                    <input class="btn btn-light" type="button" value="R" onclick="discount.controlNumber.value+='R'" />
+                                    <input class="btn btn-light" type="button" value="T" onclick="discount.controlNumber.value+='T'" />
+                                    <input class="btn btn-light" type="button" value="Y" onclick="discount.controlNumber.value+='Y'" />
+                                    <input class="btn btn-light" type="button" value="U" onclick="discount.controlNumber.value+='U'" />
+                                    <input class="btn btn-light" type="button" value="I" onclick="discount.controlNumber.value+='I'" />
+                                    <input class="btn btn-light" type="button" value="O" onclick="discount.controlNumber.value+='O'" />
+                                    <input class="btn btn-light" type="button" value="P" onclick="discount.controlNumber.value+='P'" />
+                                    <br />
+                                    <input class="btn btn-light" type="button" value="A" onclick="discount.controlNumber.value+='A'" />
+                                    <input class="btn btn-light" type="button" value="S" onclick="discount.controlNumber.value+='S'" />
+                                    <input class="btn btn-light" type="button" value="D" onclick="discount.controlNumber.value+='D'" />
+                                    <input class="btn btn-light" type="button" value="F" onclick="discount.controlNumber.value+='F'" />
+                                    <input class="btn btn-light" type="button" value="G" onclick="discount.controlNumber.value+='G'" />
+                                    <input class="btn btn-light" type="button" value="H" onclick="discount.controlNumber.value+='H'" />
+                                    <input class="btn btn-light" type="button" value="J" onclick="discount.controlNumber.value+='J'" />
+                                    <input class="btn btn-light" type="button" value="K" onclick="discount.controlNumber.value+='K'" />
+                                    <input class="btn btn-light" type="button" value="L" onclick="discount.controlNumber.value+='L'" />
+                                    <input class="btn btn-light" type="button" value="-" onclick="discount.controlNumber.value+='-'" />
+                                    <br />
+                                    <input class="btn btn-light" type="button" value="Z" onclick="discount.controlNumber.value+='Z'" />
+                                    <input class="btn btn-light" type="button" value="X" onclick="discount.controlNumber.value+='X'" />
+                                    <input class="btn btn-light" type="button" value="C" onclick="discount.controlNumber.value+='C'" />
+                                    <input class="btn btn-light" type="button" value="V" onclick="discount.controlNumber.value+='V'" />
+                                    <input class="btn btn-light" type="button" value="B" onclick="discount.controlNumber.value+='B'" />
+                                    <input class="btn btn-light" type="button" value="N" onclick="discount.controlNumber.value+='N'" />
+                                    <input class="btn btn-light" type="button" value="M" onclick="discount.controlNumber.value+='M'" />
+                                    <input class="btn btn-light" type="button" value="Del" onclick="discount.controlNumber.value=''" />
+                                    <input class="btn btn-light" type="button" value="Enter" id="controlNumberEnter" />
+                                </div>
+                            </div>
+
+
+                        </form>
+                        <button type="submit" class="btn btn-primary" id="submitDiscount">Submit</button>
+                    </div>
+
+
+                </div>
+            </div>
+
+            <!-- Modal footer -->
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary closeModal" data-dismiss="modal">Close</button>
+            </div>
+
+        </div>
+    </div>
+</div>
+
+<!-- Load Modal -->
+<div class="modal fade" id="loadModal">
+    <div class="modal-dialog modal-xl">
+        <div class="modal-content">
+
+            <!-- Modal Header -->
+            <div class="modal-header">
+                <h4 class="modal-title">Load Amount</h4>
+                <button type="button" class="close closeModal" data-dismiss="modal">&times;</button>
+            </div>
+
+            <!-- Modal body -->
+            <div class="modal-body">
+
+                <div class="container">
+                    <form name="card">
+                        <div class="form-group">
+                            <label for="cardId">Card ID:</label>
+                            <input type="text" class="form-control" id="cardId" placeholder="Enter Card Id" name="cardId" required>
+                            <div id="cardIdKey">
+                                <input class="btn btn-light" type="button" value="1" onclick="card.cardId.value+='1'" />
+                                <input class="btn btn-light" type="button" value="2" onclick="card.cardId.value+='2'" />
+                                <input class="btn btn-light" type="button" value="3" onclick="card.cardId.value+='3'" />
+                                <input class="btn btn-light" type="button" value="4" onclick="card.cardId.value+='4'" />
+                                <input class="btn btn-light" type="button" value="5" onclick="card.cardId.value+='5'" />
+                                <input class="btn btn-light" type="button" value="6" onclick="card.cardId.value+='6'" />
+                                <input class="btn btn-light" type="button" value="7" onclick="card.cardId.value+='7'" />
+                                <input class="btn btn-light" type="button" value="8" onclick="card.cardId.value+='8'" />
+                                <input class="btn btn-light" type="button" value="9" onclick="card.cardId.value+='9'" />
+                                <input class="btn btn-light" type="button" value="0" onclick="card.cardId.value+='0'" />
+                                <br />
+                                <input class="btn btn-light" type="button" value="Q" onclick="card.cardId.value+='Q'" />
+                                <input class="btn btn-light" type="button" value="W" onclick="card.cardId.value+='W'" />
+                                <input class="btn btn-light" type="button" value="E" onclick="card.cardId.value+='E'" />
+                                <input class="btn btn-light" type="button" value="R" onclick="card.cardId.value+='R'" />
+                                <input class="btn btn-light" type="button" value="T" onclick="card.cardId.value+='T'" />
+                                <input class="btn btn-light" type="button" value="Y" onclick="card.cardId.value+='Y'" />
+                                <input class="btn btn-light" type="button" value="U" onclick="card.cardId.value+='U'" />
+                                <input class="btn btn-light" type="button" value="I" onclick="card.cardId.value+='I'" />
+                                <input class="btn btn-light" type="button" value="O" onclick="card.cardId.value+='O'" />
+                                <input class="btn btn-light" type="button" value="P" onclick="card.cardId.value+='P'" />
+                                <br />
+                                <input class="btn btn-light" type="button" value="A" onclick="card.cardId.value+='A'" />
+                                <input class="btn btn-light" type="button" value="S" onclick="card.cardId.value+='S'" />
+                                <input class="btn btn-light" type="button" value="D" onclick="card.cardId.value+='D'" />
+                                <input class="btn btn-light" type="button" value="F" onclick="card.cardId.value+='F'" />
+                                <input class="btn btn-light" type="button" value="G" onclick="card.cardId.value+='G'" />
+                                <input class="btn btn-light" type="button" value="H" onclick="card.cardId.value+='H'" />
+                                <input class="btn btn-light" type="button" value="J" onclick="card.cardId.value+='J'" />
+                                <input class="btn btn-light" type="button" value="K" onclick="card.cardId.value+='K'" />
+                                <input class="btn btn-light" type="button" value="L" onclick="card.cardId.value+='L'" />
+                                <input class="btn btn-light" type="button" value="-" onclick="card.cardId.value+='-'" />
+                                <br />
+                                <input class="btn btn-light" type="button" value="Z" onclick="card.cardId.value+='Z'" />
+                                <input class="btn btn-light" type="button" value="X" onclick="card.cardId.value+='X'" />
+                                <input class="btn btn-light" type="button" value="C" onclick="card.cardId.value+='C'" />
+                                <input class="btn btn-light" type="button" value="V" onclick="card.cardId.value+='V'" />
+                                <input class="btn btn-light" type="button" value="B" onclick="card.cardId.value+='B'" />
+                                <input class="btn btn-light" type="button" value="N" onclick="card.cardId.value+='N'" />
+                                <input class="btn btn-light" type="button" value="M" onclick="card.cardId.value+='M'" />
+                                <input class="btn btn-light" type="button" value="Del" onclick="card.cardId.value=''" />
+                                <input class="btn btn-light" type="button" value="Enter" id="cardIdEnter" />
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label for="amount">Amount:</label>
+                            <input type="text" class="form-control" id="amount" placeholder="Enter Amount" name="amount" required>
+                            <div id="amountKey">
+                                <input class="btn btn-light" type="button" value="1" onclick="card.amount.value+='1'" />
+                                <input class="btn btn-light" type="button" value="2" onclick="card.amount.value+='2'" />
+                                <input class="btn btn-light" type="button" value="3" onclick="card.amount.value+='3'" />
+                                <input class="btn btn-light" type="button" value="4" onclick="card.amount.value+='4'" />
+                                <input class="btn btn-light" type="button" value="5" onclick="card.amount.value+='5'" />
+                                <input class="btn btn-light" type="button" value="6" onclick="card.amount.value+='6'" />
+                                <input class="btn btn-light" type="button" value="7" onclick="card.amount.value+='7'" />
+                                <input class="btn btn-light" type="button" value="8" onclick="card.amount.value+='8'" />
+                                <input class="btn btn-light" type="button" value="9" onclick="card.amount.value+='9'" />
+                                <input class="btn btn-light" type="button" value="0" onclick="card.amount.value+='0'" />
+                                <input class="btn btn-light" type="button" value="Del" onclick="card.amount.value=''" />
+                                <input class="btn btn-light" type="button" value="Enter" id="amountEnter" />
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label for="cashAmount">Cash Amount:</label>
+                            <input type="text" class="form-control" id="cashAmount" placeholder="Enter Cash Amount" name="cashAmount" required>
+                            <div id="cashAmountKey">
+                                <input class="btn btn-light" type="button" value="1" onclick="card.cashAmount.value+='1'" />
+                                <input class="btn btn-light" type="button" value="2" onclick="card.cashAmount.value+='2'" />
+                                <input class="btn btn-light" type="button" value="3" onclick="card.cashAmount.value+='3'" />
+                                <input class="btn btn-light" type="button" value="4" onclick="card.cashAmount.value+='4'" />
+                                <input class="btn btn-light" type="button" value="5" onclick="card.cashAmount.value+='5'" />
+                                <input class="btn btn-light" type="button" value="6" onclick="card.cashAmount.value+='6'" />
+                                <input class="btn btn-light" type="button" value="7" onclick="card.cashAmount.value+='7'" />
+                                <input class="btn btn-light" type="button" value="8" onclick="card.cashAmount.value+='8'" />
+                                <input class="btn btn-light" type="button" value="9" onclick="card.cashAmount.value+='9'" />
+                                <input class="btn btn-light" type="button" value="0" onclick="card.cashAmount.value+='0'" />
+                                <input class="btn btn-light" type="button" value="Del" onclick="card.cashAmount.value=''" />
+                                <input class="btn btn-light" type="button" value="Enter" id="cashAmountEnter" />
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <h2>Change: <span class="badge badge-secondary" id="change">0</span></h2>
+                        </div>
+
+                    </form>
+                    <button type="submit" class="btn btn-primary" id="submitLoad">Submit</button>
+                </div>
+            </div>
+
+            <!-- Modal footer -->
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary closeModal" data-dismiss="modal">Close</button>
+            </div>
+
+        </div>
+    </div>
+</div>
+
+@if (ViewBag.Message != null)
+{
+    <script type="text/javascript">
+            window.onload = function () {
+                alert("@ViewBag.Message");
+            }
+    </script>
+}
